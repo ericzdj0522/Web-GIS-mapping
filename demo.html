@@ -1,0 +1,1920 @@
+ <!DOCTYPE html>
+<html lang="es">
+	
+	<head>
+		<meta charset="utf-8">
+		<title>Slidx</title>
+		<!-- jQuery for side menu -->
+		<!--<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>-->
+		<script type="text/javascript" src="vendor/jquery-1.11.1.min.js"></script>
+		
+		<!-- Slidx -->
+		<script type="text/javascript" src="slidx.js"></script>
+		
+		<!-- Style sheet for Touch-enabled-Sliding -->
+		<link rel="stylesheet" href="app.css">
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="app.js"></script>
+		
+		<!-- jQuery for coverflow -->
+		<!-- jQuery/jQueryUI (hosted) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.js"></script>
+		<!--<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/sunny/jquery-ui.css" rel="stylesheet" type="text/css"/>-->
+		
+		<!-- Markdown parser -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js"></script>
+		
+		<!-- Prettyprint -->
+		<link href="https://google-code-prettify.googlecode.com/svn/loader/prettify.css" rel="stylesheet" type="text/css"/>
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+		
+		<!-- Plugin -->
+		<script src="jquery.coverflow.js"></script>
+		<!-- Optionals -->
+		<!--<script src="jquery.interpolate.js"></script>
+			<script src="jquery.touchSwipe.min.js"></script>
+		<script src="reflection.js"></script>-->
+		
+		<!-- Lightbox effect -->
+		<link rel="stylesheet" href="lightbox_styles.css" type="text/css">
+		<script type="text/javascript" src="lightbox.js"></script>
+		
+		
+		
+		<style>
+			<!--The style part for right-slide menu-->
+			ul {
+			padding: 0px;
+			margin: 0px;
+			}
+			
+			
+			#slidx_menu {
+			background-color: #ffc0cb;
+			background: transparent;
+			border-left: 1px solid #c0c0c0;
+			}
+			
+			#slidx_button {
+			background-image: url("UI/slidebutton1.jpg");
+			background-size: 100%;
+			padding: 30px 30px;
+			margin: 20px 20px 0px 0px;
+			}
+			#slidx_button:hover {
+			background-color: #FFFFFF;
+			cursor: pointer;
+			}
+			
+			
+			#test1 {
+			position: absolute;
+			left: 50px;
+			top: 100px;
+			width: 50px;
+			height: 100px;
+			}
+			
+			#test2 {
+			position: absolute;
+			left: 200px;
+			top: 100px;
+			width: 50px;
+			height: 100px;
+			}
+			
+			#test3 {
+			position: absolute;
+			left: 350px;
+			top: 100px;
+			width: 50px;
+			height: 100px;
+			}
+			
+			#column-wrapper{
+			position: absolute;
+			
+			top: 100px;
+			}
+			
+			
+			
+			
+			
+			<!-- Coverflow style part-->
+			
+			
+			<!-- Map style part-->
+			html { height: 100%;}
+			body { height: 100%; margin: 0%; padding: 0%; }
+			#map {
+			height: 890px;
+			width: 100%;
+			float: right;
+			}
+			
+			
+			
+			#geocoding-panel {
+			position: absolute;
+			top: 100px;
+			width: 300px;
+			background-color: #fff;
+			text-align: center;
+			font-family: 'Roboto','sans-serif';
+			}
+			
+			#place-input{
+			position: relative;
+			bottom: 10px;
+			background-color: #fff;
+			font-family: Roboto;
+			font-size: 15px;
+			font-weight: 300;
+			padding: 0 11px 0 13px;
+			text-overflow: ellipsis;
+			width: 240px;
+			}
+			
+			#place-input:focus {
+			border-color: #4d90fe;
+			}
+			
+			#footer{
+			position: absolute;
+			top: 650px;
+			width: 300px;
+			background-color: #fff;
+			text-align: center;
+			font-family: 'Roboto','sans-serif';
+			}
+			
+			
+			
+			
+			#direction-panel{
+			position: absolute;
+			top: 200px;
+			width: 300px;
+			height: 300px;
+			z-index: 5;
+			background-color: #fff;
+			text-align: center;
+			}
+			
+			.controls {
+			margin-top: 20px;
+			border: 1px solid transparent;
+			border-radius: 2px 0 0 2px;
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			height: 32px;
+			outline: none;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+			}
+			
+			#origin-input{
+			position: relative;
+			background-color: #fff;
+			font-family: Roboto;
+			font-size: 15px;
+			font-weight: 300;
+			padding: 0 11px 0 13px;
+			text-overflow: ellipsis;
+			width: 240px;
+			}
+			
+			#destination-input {
+			position: relative;
+			top: 10px;
+			background-color: #fff;
+			font-family: Roboto;
+			font-size: 15px;
+			font-weight: 300;
+			padding: 0 11px 0 13px;
+			text-overflow: ellipsis;
+			width: 240px;
+			}
+			
+			#intermediate-input {
+			position: relative;
+			top: 10px;
+			background-color: #fff;
+			font-family: Roboto;
+			font-size: 15px;
+			font-weight: 300;
+			padding: 0 11px 0 13px;
+			text-overflow: ellipsis;
+			width: 240px;
+			}
+			
+			#origin-input:focus,
+			#destination-input:focus,
+			#intermediate-input:focus {
+			border-color: #4d90fe;
+			}
+			
+			#mode-selector {
+			position: relative;
+			top: 20px;
+			width: 300px;
+			height: 100px;
+			color: #fff;
+			background-color: #33adff;
+			padding: 5px 11px 5px 11px;
+			}
+			
+			#mode-selector label {
+			font-family: Roboto;
+			font-size: 13px;
+			font-weight: 300;
+			}
+			
+			#fade-click{
+			position: relative;
+			top: 30px;
+			right: 5px;
+			width: 100px;
+			height: 32px;
+			color: #fff;
+			background-color:#33adff;
+			}
+			
+			#fade-click:hover{
+			background-color:#E0E0E0;
+			}
+			
+			#clearroute{
+			position: relative;
+			top: 30px;
+			width: 100px;
+			height: 32px;
+			color: #fff;
+			background-color:#33adff;
+			}
+			
+			#clearroute:hover{
+			background-color:#E0E0E0;
+			}
+			
+			#addwaypoints{
+			position: relative;
+			top: 30px;
+			left: 5px;
+			width: 32px;
+			height: 32px;
+			color: #fff;
+			background-color:#33adff;
+			}
+			
+			#addwaypoints:hover{
+			background-color:#E0E0E0;
+			}
+			
+			#webtitle{
+			position: absolute;
+			top: 0px;
+			right: 400px;
+			width: 660px;
+			height: 75px;
+			text-align: center;
+			background: #ffffff;
+			z-index: 15;
+			background-image:url('http://www.matteopericoli.com/RHFoundation.jpg');
+			background-size: 660px 75px;
+			}
+			
+			#route-panel{
+			position: absolute;
+			left: 200px;
+			top: 400px;
+			width: 0px;
+			height: 0px;
+			overflow: auto;
+			background: #ffffff;
+			z-index: 5;
+			
+			border: 5px solid #C0C0C0;
+			border-radius: 10px 10px 10px 10px;
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			outline: none;
+			box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+			}
+			
+			#route-panel::-webkit-scrollbar{
+			height: 16px;
+			background: transparent;
+			}
+			
+			#route-panel::-webkit-scrollbar-thumb{
+			background-color: #C0C0C0;
+			-webkit-box-shadow: 0 0 8px gray inset;
+			border-radius: 10px;
+			}
+			
+			#route-panel::-webkit-scrollbar-thumb:hover{
+			background-color: #FFFFFF;
+			}
+			
+			#route-panel::-webkit-scrollbar-thumb:active{
+			background-color:#FFFFFF;
+			}
+			
+			#route-panel::-webkit-scrollbar-track{
+			border: 1px gray solid;
+			-webkit-box-shadow: 0 0 16px gray inset;
+			}
+			
+			#transitoption {
+			position: relative;
+			width: 300px;
+			height: 60px;
+			background-color: #71db71;
+			text-align: center;
+			font-family: 'Roboto','sans-serif';
+			top: 44px;
+			display:none;
+			}
+			
+			#caroption {
+			position: relative;
+			width: 300px;
+			height: 60px;
+			background-color: #ff6666;
+			text-align: center;
+			font-family: 'Roboto','sans-serif';
+			top: 44px;
+			display:none;
+			}
+			
+			#option-selector1{
+			position: relative;
+			top: 20px;
+			}
+			
+			#option-selector2{
+			position: relative;
+			top: 20px;
+			}
+			
+			#waypoints-panel{
+			position: relative;
+			width: 300px;
+			height: 100px;
+			background-color: #ffffff;
+			text-align: center;
+			font-family: 'Roboto','sans-serif';
+			top: 40px;
+			z-index:-5;
+			display: none;
+			}
+			
+			
+			
+			
+			
+			.context_menu{
+			background-color: #ffffff;
+			box-shadow: 3px 3px 6px #C0C0C0;
+			}
+			.context_menu_item{
+			padding:10px 12px;
+			}
+			
+			.context_menu_item:hover {
+			background-color: #E0E0E0;
+			}
+			
+			.context_menu_separator{
+			background-color: #C0C0C0;
+			height: 1px;
+			margin: 0;
+			padding: 0;
+			}
+			#clearDirectionsItem, #getDirectionsItem, #addDestinationItem{
+			display: none;
+			}
+		</style>
+		
+		<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYu8m4t6lXw2zaX9AUN_35t4JT65zux9U&signed_in=true&libraries=places">
+			//The google map API reference
+		</script>
+		
+		<script type="text/javascript" src="ContextMenu.js">
+			//This reference utilizes a lot of google API function, need to be placed after the google map API reference
+		</script>
+		
+		<script type="text/javascript">
+			
+		</script>
+		
+		<!--Main part-->
+		<script type="text/javascript">
+			var map;
+			var layer;
+			var layer1;
+			var layer2;
+			var layer3;
+			var NYC = new google.maps.LatLng(40.748562, -73.985816)
+			//The JSON code for user-defined map style
+			var styles =
+			[
+			{
+				"featureType": "water",
+				"elementType": "geometry.fill",
+				"stylers": [
+				{ "visibility": "on" },
+				{ "color": "#76ebff" }
+				]
+				},{
+				"featureType": "landscape.natural",
+				"stylers": [
+				{ "visibility": "on" },
+				{ "color": "#80da2b" }
+				]
+				},{
+				"featureType": "road.highway",
+				"stylers": [
+				{ "visibility": "on" },
+				{ "hue": "#ff00ee" },
+				{ "lightness": 27 }
+				]
+				},{
+			}
+			];
+			//Define the new map type based on Json code
+			var myMapType = new google.maps.StyledMapType(styles,{name:"NYC_Style"});
+			
+			//Direction service
+			function initMap() {
+				var mapOptions = {
+					center: NYC,
+					zoom: 13,
+					zoomControl:true,
+					zoomControlOptions:{
+						position: google.maps.ControlPosition.LEFT_CENTER
+					},
+					
+					mapTypeControl:true,
+					mapTypeControlOptions:{
+						mapTypeIds:[google.maps.MapTypeId.ROADMAP, "NYC_Style", google.maps.MapTypeId.SATELLITE],
+						position: google.maps.ControlPosition.TOP_LEFT
+					},
+					
+					scaleControl:true,
+					scaleControlOptions:{
+					},
+					
+					streetViewControl:true,
+					streetViewControlOptions:{
+						position: google.maps.ControlPosition.LEFT_CENTER
+					},
+					
+					overviewMapControl:true,
+					overviewMapControlOptions: {
+						opened: true,
+					},
+					
+					rotateControl:true,
+					rotateControlOptions: {
+						position: google.maps.ControlPosition.RIGHT_CENTER
+					},
+					
+				mapTypeId: google.maps.MapTypeId.ROADMAP,};
+				
+				
+				var origin_place_id = null;
+				var destination_place_id = null;
+				// The variables for waypoints
+				var intermediate_place_id = null;
+				var waypts = [];
+				var travel_mode = google.maps.TravelMode.WALKING;
+				//Map intialization
+				map = new google.maps.Map(document.getElementById('map'), mapOptions);
+				
+				layer = new google.maps.FusionTablesLayer({
+					query:
+					{
+						select:'location',
+						from:'16bCb_uhowRaGtAubO_1Z99mf9XoFVtUomRxDxFTK'
+					},
+					styles:
+					[
+					{
+						markerOptions: {
+							iconName: "arts"
+						}
+					},
+					{
+						
+					}
+					]
+				});
+				
+				google.maps.event.addDomListener(layer, 'click', function (e) {
+					console.log(e);
+				});
+				layer1 = new google.maps.FusionTablesLayer({
+					query:
+					{
+						select:'location',
+						from:'19Sq9G0uzd-ofmPTFzWCk32DITgf10JhCMpIgT4xz'
+					},
+					styles:
+					[
+					{
+						markerOptions: {
+							iconName: "museum"
+						}
+					},
+					{
+						
+					}
+					]
+				});
+				
+				google.maps.event.addDomListener(layer, 'click', function (e) {
+					console.log(e);
+				});
+				
+				layer2 = new google.maps.FusionTablesLayer({
+					query:
+					{
+						select:'location',
+						from:'1wfdn9co-U6ex9EfOeBwz5mgnpGymroQtIT-P7IiN'
+					},
+					styles:
+					[
+					{
+						markerOptions: {
+							iconName: "ranger_station"
+						}
+					},
+					{
+						
+					}
+					]
+				});
+				
+				google.maps.event.addDomListener(layer, 'click', function (e) {
+					console.log(e);
+				});
+				layer3 = new google.maps.FusionTablesLayer({
+					query:
+					{
+						select:'location',
+						from:'1u-OjBep7FQ8dZa5A5TS2o5flTydl3nQEG2ajA_PH'
+					},
+					styles:
+					[
+					{
+						polygonOptions: {
+							fillColor: '#7FB27F' // Green
+						}
+					},
+					{
+						
+					}
+					]
+				});
+				
+				google.maps.event.addDomListener(layer, 'click', function (e) {
+					console.log(e);
+				});
+				
+				//This is the initialization of context menu
+				var contextMenuOptions={};
+				contextMenuOptions.classNames={menu:'context_menu', menuSeparator:'context_menu_separator'};
+				
+				//	create an array of ContextMenuItem objects
+				//	an 'id' is defined for each of the four directions related items
+				var menuItems=[];
+				menuItems.push({className:'context_menu_item', eventName:'directions_origin_click', id:'directionsOriginItem', label:'Directions from here'});
+				menuItems.push({className:'context_menu_item', eventName:'directions_destination_click', id:'directionsDestinationItem', label:'Directions to here'});
+				menuItems.push({className:'context_menu_item', eventName:'clear_directions_click', id:'clearDirectionsItem', label:'Clear directions'});
+				menuItems.push({className:'context_menu_item', eventName:'get_directions_click', id:'getDirectionsItem', label:'Get directions'});
+				menuItems.push({className:'context_menu_item', eventName:'add_destination_click', id:'addDestinationItem', label:'Add destination'});
+				//	a menuItem with no properties will be rendered as a separator
+				menuItems.push({});
+				menuItems.push({className:'context_menu_item', eventName:'zoom_in_click', label:'Zoom in'});
+				menuItems.push({className:'context_menu_item', eventName:'zoom_out_click', label:'Zoom out'});
+				menuItems.push({});
+				menuItems.push({className:'context_menu_item', eventName:'center_map_click', label:'Center map here'});
+				menuItems.push({className:'context_menu_item', eventName:'reset_map_click', label:'Reset map'});
+				contextMenuOptions.menuItems=menuItems;
+				
+				var contextMenu=new ContextMenu(map, contextMenuOptions);
+				
+				google.maps.event.addListener(map, 'rightclick', function(mouseEvent){
+					contextMenu.show(mouseEvent.latLng);
+				});
+				
+				
+				
+				
+				
+				
+				
+				//Add the user-defined style map
+				map.mapTypes.set("NYC_Style", myMapType);
+				
+				//Return map to initialized state
+				/*google.maps.event.addListener(map, 'click', function(){
+					map.setZoom(13);
+					map.setCenter(NYC);
+				});*/
+				
+				//Initialize service
+				var directionsService = new google.maps.DirectionsService;
+				
+				//Initialize route style based upon different travel mode
+				var rendererOptions1 = {
+					
+					draggable: true,
+					polylineOptions: {
+						strokeColor: '#0000ff',
+						strokeOpacity: 1,
+						strokeWeight: 6,
+					},
+					markerOptions: {
+						animation: google.maps.Animation.BOUNCE,
+						icon: 'travel mode/pedestrian.png',
+						//icon: 'https://cdn3.iconfinder.com/data/icons/public-transport/22/icon_14-48.png',
+						//icon:'https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_directions_transit_48px-48.png',
+						//icon:'http://icons.iconarchive.com/icons/icons8/android/48/Transport-Car-icon.png',
+						//icon: 'https://cdn3.iconfinder.com/data/icons/eldorado-stroke-transport/40/bicycle-48.png'
+					},
+				}
+				
+				var rendererOptions2 = {
+					
+					draggable: true,
+					polylineOptions: {
+						clickable: true,
+						strokeColor: '#00ff00',
+						strokeOpacity: 1,
+						strokeWeight: 6,
+					} ,
+					markerOptions: {
+						animation: google.maps.Animation.BOUNCE,
+						icon:'travel mode/transit.png',
+					},
+				}
+				
+				var rendererOptions3 = {
+					
+					draggable: true,
+					polylineOptions: {
+						clickable: true,
+						strokeColor: '#ff0000',
+						strokeOpacity: 1,
+						strokeWeight: 6,
+					} ,
+					markerOptions: {
+						animation: google.maps.Animation.BOUNCE,
+						icon:'travel mode/car.png',
+					},
+				}
+				
+				var rendererOptions4 = {
+					
+					draggable: true,
+					polylineOptions: {
+						clickable: true,
+						strokeColor: '#ffff00',
+						strokeOpacity: 1,
+						strokeWeight: 6,
+					} ,
+					markerOptions: {
+						animation: google.maps.Animation.BOUNCE,
+						icon: 'travel mode/bicycle.png',
+						
+					},
+				}
+				
+				
+				//Initialize route render object
+				var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions1);
+				//Render polyline route on the map
+				directionsDisplay.setMap(map);
+				//Render textual route in the route-panel
+				directionsDisplay.setPanel(document.getElementById("route-panel"));
+				
+				//Initialize parameters based on user input
+				var origin_input = document.getElementById('origin-input');
+				var destination_input = document.getElementById('destination-input');
+				var intermediate_input = document.getElementById('intermediate-input');
+				var modes = document.getElementById('mode-selector');
+				
+				//map.controls[google.maps.ControlPosition.TOP_LEFT].push(origin_input);
+				//map.controls[google.maps.ControlPosition.TOP_LEFT].push(destination_input);
+				//map.controls[google.maps.ControlPosition.TOP_LEFT].push(modes);
+				
+				//Set autocomplete and bonds
+				var origin_autocomplete = new google.maps.places.Autocomplete(origin_input);
+				origin_autocomplete.bindTo('bounds', map);
+				var destination_autocomplete = new google.maps.places.Autocomplete(destination_input);
+				destination_autocomplete.bindTo('bounds', map);
+				var intermediate_autocomplete = new google.maps.places.Autocomplete(intermediate_input);
+				intermediate_autocomplete.bindTo('bounds', map);
+				
+				// Sets a listener on a radio button to change the filter type on Places
+				// Autocomplete.
+				function setupClickListener(id, mode) {
+					var radioButton = document.getElementById(id);
+					radioButton.addEventListener('click', function() {
+						travel_mode = mode;
+						// Change the style of the route based upon different travel mode
+						if  (travel_mode == google.maps.TravelMode.WALKING){
+							directionsDisplay.setOptions(rendererOptions1);
+							$("#caroption").slideUp("fast");
+							$("#transitoption").slideUp("fast");
+							route(origin_place_id, destination_place_id, travel_mode,
+							directionsService, directionsDisplay);
+							
+							
+							} else if(travel_mode == google.maps.TravelMode.TRANSIT){
+							directionsDisplay.setOptions(rendererOptions2);
+							
+							$(document).ready(function(){
+								$("#transitoption").slideDown(1000);
+								$("#caroption").slideUp("fast");
+								//route(origin_place_id, destination_place_id, travel_mode,
+								//directionsService, directionsDisplay);
+								
+								
+								
+							});
+							//Judge the user transit preference
+							if(subradioButton3.checked == true){
+								//var travelmode = google.maps.TravelMode.TRANSIT;
+								directionsDisplay.setOptions(rendererOptions2);
+								if (!origin_place_id || !destination_place_id) {
+									return;
+								}
+								directionsService.route({
+									origin: {'placeId': origin_place_id},
+									destination: {'placeId': destination_place_id},
+									travelMode: travel_mode,
+									transitOptions: {modes: [google.maps.TransitMode.SUBWAY],}
+									}, function(response, status) {
+									//Checking the status of direction query
+									if (status === google.maps.DirectionsStatus.OK) {
+										directionsDisplay.setDirections(response);
+										} else {
+										window.alert('Directions request failed due to ' + status);
+									}
+								});
+								
+								}else{
+								//var travelmode = google.maps.TravelMode.TRANSIT;
+								directionsDisplay.setOptions(rendererOptions2);
+								if (!origin_place_id || !destination_place_id) {
+									return;
+								}
+								directionsService.route({
+									origin: {'placeId': origin_place_id},
+									destination: {'placeId': destination_place_id},
+									travelMode: travel_mode,
+									transitOptions: {modes: [google.maps.TransitMode.BUS],}
+									}, function(response, status) {
+									//Checking the status of direction query
+									if (status === google.maps.DirectionsStatus.OK) {
+										directionsDisplay.setDirections(response);
+										} else {
+										window.alert('Directions request failed due to ' + status);
+									}
+								});
+							}
+							
+							} else if(travel_mode == google.maps.TravelMode.DRIVING){
+							directionsDisplay.setOptions(rendererOptions3);
+							
+							$(document).ready(function(){
+								$("#caroption").slideDown(1000);
+								$("#transitoption").slideUp("fast");
+								
+							});
+							//Judge the user drive preference
+							if(subradioButton1.checked == true){
+								//var travelmode = google.maps.TravelMode.DRIVING;
+								directionsDisplay.setOptions(rendererOptions3);
+								if (!origin_place_id || !destination_place_id) {
+									return;
+								}
+								directionsService.route({
+									origin: {'placeId': origin_place_id},
+									destination: {'placeId': destination_place_id},
+									travelMode: travel_mode,
+									avoidTolls: true,
+									//transitOptions: {modes: [google.maps.TransitMode.SUBWAY],}
+									}, function(response, status) {
+									//Checking the status of direction query
+									if (status === google.maps.DirectionsStatus.OK) {
+										directionsDisplay.setDirections(response);
+										} else {
+										window.alert('Directions request failed due to ' + status);
+									}
+								});
+								}else{
+								route(origin_place_id, destination_place_id, travel_mode,
+								directionsService, directionsDisplay);
+							}
+							
+							
+							
+							}else if(travel_mode == google.maps.TravelMode.BICYCLING){
+							directionsDisplay.setOptions(rendererOptions4);
+							$("#caroption").slideUp("fast");
+							$("#transitoption").slideUp("fast");
+							route(origin_place_id, destination_place_id, travel_mode,
+							directionsService, directionsDisplay);
+							
+						}
+						//Once the travel mode changed, recalculated the new route
+						//route(origin_place_id, destination_place_id, travel_mode,
+						//directionsService, directionsDisplay);
+					});
+				}
+				setupClickListener('changemode-walking', google.maps.TravelMode.WALKING);
+				setupClickListener('changemode-transit', google.maps.TravelMode.TRANSIT);
+				setupClickListener('changemode-driving', google.maps.TravelMode.DRIVING);
+				setupClickListener('changemode-bicycling', google.maps.TravelMode.BICYCLING);
+				
+				//EventListener for the transitoptions
+				var subradioButton3 = document.getElementById("option-subway");
+				subradioButton3.addEventListener('click', function(){
+					//var travelmode = google.maps.TravelMode.TRANSIT;
+					directionsDisplay.setOptions(rendererOptions2);
+					if (!origin_place_id || !destination_place_id) {
+						return;
+					}
+					directionsService.route({
+						origin: {'placeId': origin_place_id},
+						destination: {'placeId': destination_place_id},
+						travelMode: google.maps.TravelMode.TRANSIT,
+						transitOptions: {modes: [google.maps.TransitMode.SUBWAY],}
+						}, function(response, status) {
+						//Checking the status of direction query
+						if (status === google.maps.DirectionsStatus.OK) {
+							directionsDisplay.setDirections(response);
+							} else {
+							window.alert('Directions request failed due to ' + status);
+						}
+					});
+					
+				});
+				var subradioButton4 = document.getElementById("option-bus");
+				subradioButton4.addEventListener('click', function(){
+					//var travelmode = google.maps.TravelMode.TRANSIT;
+					directionsDisplay.setOptions(rendererOptions2);
+					if (!origin_place_id || !destination_place_id) {
+						return;
+					}
+					directionsService.route({
+						origin: {'placeId': origin_place_id},
+						destination: {'placeId': destination_place_id},
+						travelMode: google.maps.TravelMode.TRANSIT,
+						transitOptions: {modes: [google.maps.TransitMode.BUS],}
+						}, function(response, status) {
+						//Checking the status of direction query
+						if (status === google.maps.DirectionsStatus.OK) {
+							directionsDisplay.setDirections(response);
+							} else {
+							window.alert('Directions request failed due to ' + status);
+						}
+					});
+					
+				});
+				
+				//EventListener for the caroptions
+				var subradioButton1 = document.getElementById("option-money");
+				subradioButton1.addEventListener('click', function(){
+					//var travelmode = google.maps.TravelMode.DRIVING;
+					directionsDisplay.setOptions(rendererOptions3);
+					if (!origin_place_id || !destination_place_id) {
+						return;
+					}
+					directionsService.route({
+						origin: {'placeId': origin_place_id},
+						destination: {'placeId': destination_place_id},
+						travelMode: google.maps.TravelMode.DRIVING,
+						avoidTolls: true,
+						//transitOptions: {modes: [google.maps.TransitMode.SUBWAY],}
+						}, function(response, status) {
+						//Checking the status of direction query
+						if (status === google.maps.DirectionsStatus.OK) {
+							directionsDisplay.setDirections(response);
+							} else {
+							window.alert('Directions request failed due to ' + status);
+						}
+					});
+					
+				});
+				var subradioButton2 = document.getElementById("option-time");
+				subradioButton2.addEventListener('click', function(){
+					//var travelmode = google.maps.TravelMode.DRIVING;
+					directionsDisplay.setOptions(rendererOptions3);
+					route(origin_place_id, destination_place_id, travel_mode,
+					directionsService, directionsDisplay);
+					
+				});
+				
+				
+				//Expand current view to fit place
+				function expandViewportToFitPlace(map, place) {
+					if (place.geometry.viewport) {
+						map.fitBounds(place.geometry.viewport);
+						} else {
+						map.setCenter(place.geometry.location);
+						map.setZoom(17);
+					}
+				}
+				
+				//Declare two markers for origin and destination respectively
+				var omarker = new google.maps.Marker;
+				var dmarker = new google.maps.Marker;
+				
+				//Origin_autocomplete listner
+				origin_autocomplete.addListener('place_changed', function() {
+					if(document.getElementById("destination-input").value!= ""){
+						directionsDisplay.setMap(map);
+						directionsDisplay.setPanel(document.getElementById("route-panel"));
+					}
+					
+					omarker.setMap(null);
+					var place = origin_autocomplete.getPlace();
+					if (!place.geometry) {
+						window.alert("Autocomplete's returned place contains no geometry");
+						return;
+					}
+					expandViewportToFitPlace(map, place);
+					//Drop the origin marker
+					omarker =  new google.maps.Marker({
+						map:map,
+						position: place.geometry.location,
+						icon: 'http://www.google.com/intl/en_ALL/mapfiles/markerA.png',
+						animation: google.maps.Animation.DROP
+					});
+					
+					
+					// If the place has a geometry, store its place ID and route if we have
+					// the other place ID
+					origin_place_id = place.place_id;
+					
+					if(travel_mode == google.maps.TravelMode.TRANSIT){
+						if(subradioButton3.checked == true){
+							//var travelmode = google.maps.TravelMode.TRANSIT;
+							directionsDisplay.setOptions(rendererOptions2);
+							if (!origin_place_id || !destination_place_id) {
+								return;
+							}
+							directionsService.route({
+								origin: {'placeId': origin_place_id},
+								destination: {'placeId': destination_place_id},
+								travelMode: travel_mode,
+								transitOptions: {modes: [google.maps.TransitMode.SUBWAY],}
+								}, function(response, status) {
+								//Checking the status of direction query
+								if (status === google.maps.DirectionsStatus.OK) {
+									directionsDisplay.setDirections(response);
+									} else {
+									window.alert('Directions request failed due to ' + status);
+								}
+							});
+							
+							}else{
+							//var travelmode = google.maps.TravelMode.TRANSIT;
+							directionsDisplay.setOptions(rendererOptions2);
+							if (!origin_place_id || !destination_place_id) {
+								return;
+							}
+							directionsService.route({
+								origin: {'placeId': origin_place_id},
+								destination: {'placeId': destination_place_id},
+								travelMode: travel_mode,
+								transitOptions: {modes: [google.maps.TransitMode.BUS],}
+								}, function(response, status) {
+								//Checking the status of direction query
+								if (status === google.maps.DirectionsStatus.OK) {
+									directionsDisplay.setDirections(response);
+									} else {
+									window.alert('Directions request failed due to ' + status);
+								}
+							});
+						}
+						
+						
+						}else if(travel_mode == google.maps.TravelMode.DRIVING){
+						if(subradioButton1.checked == true){
+							//var travelmode = google.maps.TravelMode.DRIVING;
+							directionsDisplay.setOptions(rendererOptions3);
+							if (!origin_place_id || !destination_place_id) {
+								return;
+							}
+							directionsService.route({
+								origin: {'placeId': origin_place_id},
+								destination: {'placeId': destination_place_id},
+								travelMode:google.maps.TravelMode.DRIVING,
+								avoidTolls: true,
+								//transitOptions: {modes: [google.maps.TransitMode.SUBWAY],}
+								}, function(response, status) {
+								//Checking the status of direction query
+								if (status === google.maps.DirectionsStatus.OK) {
+									directionsDisplay.setDirections(response);
+									} else {
+									window.alert('Directions request failed due to ' + status);
+								}
+							});
+							}else{
+							route(origin_place_id, destination_place_id, travel_mode,
+							directionsService, directionsDisplay);
+						}
+						}else{
+						route(origin_place_id, destination_place_id, travel_mode,
+						directionsService, directionsDisplay);
+					}
+					
+					
+					
+				});
+				
+				
+				//Destination_autocomplete listener
+				destination_autocomplete.addListener('place_changed', function() {
+					if(document.getElementById("origin-input").value!= ""){
+						directionsDisplay.setMap(map);
+						directionsDisplay.setPanel(document.getElementById("route-panel"));
+					}
+					
+					
+					dmarker.setMap(null);
+					var place = destination_autocomplete.getPlace();
+					if (!place.geometry) {
+						window.alert("Autocomplete's returned place contains no geometry");
+						return;
+					}
+					expandViewportToFitPlace(map, place);
+					//Drop the destination marker
+					dmarker =  new google.maps.Marker({
+						map:map,
+						position: place.geometry.location,
+						icon: 'http://www.google.com/intl/en_ALL/mapfiles/markerB.png',
+						animation: google.maps.Animation.DROP
+					});
+					
+					// If the place has a geometry, store its place ID and route if we have
+					// the other place ID
+					destination_place_id = place.place_id;
+					
+					if(travel_mode == google.maps.TravelMode.TRANSIT){
+						if(subradioButton3.checked == true){
+							//var travelmode = google.maps.TravelMode.TRANSIT;
+							directionsDisplay.setOptions(rendererOptions2);
+							if (!origin_place_id || !destination_place_id) {
+								return;
+							}
+							directionsService.route({
+								origin: {'placeId': origin_place_id},
+								destination: {'placeId': destination_place_id},
+								travelMode: travel_mode,
+								transitOptions: {modes: [google.maps.TransitMode.SUBWAY],}
+								}, function(response, status) {
+								//Checking the status of direction query
+								if (status === google.maps.DirectionsStatus.OK) {
+									directionsDisplay.setDirections(response);
+									} else {
+									window.alert('Directions request failed due to ' + status);
+								}
+							});
+							
+							}else{
+							//var travelmode = google.maps.TravelMode.TRANSIT;
+							directionsDisplay.setOptions(rendererOptions2);
+							if (!origin_place_id || !destination_place_id) {
+								return;
+							}
+							directionsService.route({
+								origin: {'placeId': origin_place_id},
+								destination: {'placeId': destination_place_id},
+								travelMode: travel_mode,
+								transitOptions: {modes: [google.maps.TransitMode.BUS],}
+								}, function(response, status) {
+								//Checking the status of direction query
+								if (status === google.maps.DirectionsStatus.OK) {
+									directionsDisplay.setDirections(response);
+									} else {
+									window.alert('Directions request failed due to ' + status);
+								}
+							});
+						}
+						
+						}else if(travel_mode == google.maps.TravelMode.DRIVING){
+						if(subradioButton1.checked == true){
+							//var travelmode = google.maps.TravelMode.DRIVING;
+							directionsDisplay.setOptions(rendererOptions3);
+							if (!origin_place_id || !destination_place_id) {
+								return;
+							}
+							directionsService.route({
+								origin: {'placeId': origin_place_id},
+								destination: {'placeId': destination_place_id},
+								travelMode:google.maps.TravelMode.DRIVING,
+								avoidTolls: true,
+								//transitOptions: {modes: [google.maps.TransitMode.SUBWAY],}
+								}, function(response, status) {
+								//Checking the status of direction query
+								if (status === google.maps.DirectionsStatus.OK) {
+									directionsDisplay.setDirections(response);
+									} else {
+									window.alert('Directions request failed due to ' + status);
+								}
+							});
+							}else{
+							route(origin_place_id, destination_place_id, travel_mode,
+							directionsService, directionsDisplay);
+						}
+						}else{
+						route(origin_place_id, destination_place_id, travel_mode,
+						directionsService, directionsDisplay);
+					}
+					
+				});
+				
+				//Intermediate_autocomplete listener
+				intermediate_autocomplete.addListener('place_changed', function() {
+					var place = intermediate_autocomplete.getPlace();
+					if (!place.geometry) {
+						window.alert("Autocomplete's returned place contains no geometry");
+						return;
+					}
+					expandViewportToFitPlace(map, place);
+					intermediate_place_id = place.place_id;
+					//Clear existing array in case of request problem
+					while(waypts.length > 0){
+						waypts.pop();
+					}
+					
+					//Must input a string placeid not a place object
+					
+					waypts.push({
+						location: {'placeId': intermediate_place_id},
+						stopover: true,
+					});
+					
+					directionsService.route({
+						origin: {'placeId': origin_place_id},
+						destination: {'placeId': destination_place_id},
+						waypoints: waypts,
+						optimizeWaypoints: true,
+						travelMode: travel_mode
+						}, function(response, status) {
+						if (status === google.maps.DirectionsStatus.OK) {
+							directionsDisplay.setDirections(response);
+							} else {
+							window.alert('Directions request failed due to ' + status);
+						}
+					});
+					
+				});
+				
+				
+				
+				function route(origin_place_id, destination_place_id, travel_mode,
+				directionsService, directionsDisplay) {
+					if (!origin_place_id || !destination_place_id) {
+						return;
+					}
+					directionsService.route({
+						origin: {'placeId': origin_place_id},
+						destination: {'placeId': destination_place_id},
+						travelMode: travel_mode,
+						}, function(response, status) {
+						//Checking the status of direction query
+						if (status === google.maps.DirectionsStatus.OK) {
+							directionsDisplay.setDirections(response);
+							//directionsDisplay.setPanel(document.getElementById("route-panel"));
+							} else {
+							window.alert('Directions request failed due to ' + status);
+						}
+					});
+				}
+				
+				//clear existing route and marker
+				document.getElementById("clearroute").addEventListener("click",function(){
+					directionsDisplay.setMap(null);
+					directionsDisplay.setPanel(null);
+					omarker.setMap(null);
+					dmarker.setMap(null);
+					document.getElementById("origin-input").value = '';
+					document.getElementById("destination-input").value = '';
+					origin_autocomplete.setTypes(origin-input);
+					
+					
+					//origin_place_id = null;
+					//destination_place_id = null;
+					
+				});
+				
+				
+				
+				
+				
+				
+				var markerOptions={};
+				markerOptions.icon='http://www.google.com/intl/en_ALL/mapfiles/markerA.png';
+				markerOptions.map=null;
+				markerOptions.position=new google.maps.LatLng(0, 0);
+				markerOptions.title='Directions origin';
+				
+				var originMarker=new google.maps.Marker(markerOptions);
+				
+				markerOptions.icon='http://www.google.com/intl/en_ALL/mapfiles/markerB.png';
+				markerOptions.title='Directions destination';
+				var destinationMarker=new google.maps.Marker(markerOptions);
+				
+				markerOptions.icon='http://www.google.com/intl/en_ALL/mapfiles/markerC.png';
+				markerOptions.title='Direction waypoints';
+				//Initialize a waypoint marker array and a waypoint array
+				var intermediateMarker = {};
+				var tempwaypts = [];
+				var directionsRequest={};
+				
+				
+				var directionsRenderer=new google.maps.DirectionsRenderer(rendererOptions3);
+				
+				//	listen for the ContextMenu 'menu_item_selected' event
+				google.maps.event.addListener(contextMenu, 'menu_item_selected', function(latLng, eventName){
+					switch(eventName){
+						case 'directions_origin_click':
+						originMarker.setPosition(latLng);
+						if(!originMarker.getMap()){
+							originMarker.setMap(map);
+						}
+						break;
+						
+						case 'directions_destination_click':
+						destinationMarker.setPosition(latLng);
+						if(!destinationMarker.getMap()){
+							destinationMarker.setMap(map);
+						}
+						break;
+						
+						case 'clear_directions_click':
+						directionsRenderer.setMap(null);
+						directionsRenderer.setPanel(null);
+						while(tempwaypts.length>0){
+							tempwaypts.pop();
+						}
+						//	set CSS styles to defaults, just conceal specific items
+						document.getElementById('clearDirectionsItem').style.display='';
+						document.getElementById('directionsDestinationItem').style.display='';
+						document.getElementById('directionsOriginItem').style.display='';
+						document.getElementById('getDirectionsItem').style.display='';
+						document.getElementById('addDestinationItem').style.display='';
+						break;
+						
+						case 'get_directions_click':
+						directionsRequest.destination=destinationMarker.getPosition();
+						directionsRequest.origin=originMarker.getPosition();
+						directionsRequest.travelMode=google.maps.TravelMode.DRIVING;
+						
+						directionsService.route(directionsRequest, function(result, status){
+							if(status===google.maps.DirectionsStatus.OK){
+								//	hide the origin and destination markers as the DirectionsRenderer will render Markers itself
+								originMarker.setMap(null);
+								destinationMarker.setMap(null);
+								directionsRenderer.setDirections(result);
+								directionsRenderer.setPanel(document.getElementById("route-panel"));
+								directionsRenderer.setMap(map);
+								//	hide all but the 'Clear directions' menu item
+								document.getElementById('addDestinationItem').style.display='block';
+								document.getElementById('clearDirectionsItem').style.display='block';
+								document.getElementById('directionsDestinationItem').style.display='none';
+								document.getElementById('directionsOriginItem').style.display='none';
+								document.getElementById('getDirectionsItem').style.display='none';
+								} else {
+								alert('Sorry, the map was unable to obtain directions.\n\nThe request failed with the message: '+status);
+							}
+						});
+						break;
+						
+						case 'zoom_in_click':
+						map.setZoom(map.getZoom()+1);
+						break;
+						
+						case 'zoom_out_click':
+						map.setZoom(map.getZoom()-1);
+						break;
+						
+						case 'center_map_click':
+						map.panTo(latLng);
+						break;
+						
+						case 'reset_map_click':
+						map.setZoom(13);
+						map.setCenter(NYC);
+						break;
+						
+						case 'add_destination_click':
+						var tempMarker = new google.maps.Marker(markerOptions);
+						tempMarker.setPosition(latLng);
+						if(!tempMarker.getMap()){
+							tempMarker.setMap(map);
+						}
+						//var temp_location = directionsRequest.destination.location;
+						tempwaypts.push({
+							location: directionsRequest.destination,
+							stopover: true,
+						});
+						directionsRequest.destination=tempMarker.getPosition();
+						directionsRequest.waypoints = tempwaypts;
+						directionsRequest.optimizeWaypoints = true;
+						
+						directionsService.route(directionsRequest, function(result, status){
+							if(status===google.maps.DirectionsStatus.OK){
+								//	hide the origin and destination markers as the DirectionsRenderer will render Markers itself
+								originMarker.setMap(null);
+								destinationMarker.setMap(null);
+								tempMarker.setMap(null);
+								directionsRenderer.setDirections(result);
+								directionsRenderer.setPanel(document.getElementById("route-panel"));
+								directionsRenderer.setMap(map);
+								//	hide all but the 'Clear directions' menu item
+								//document.getElementById('clearDirectionsItem').style.display='block';
+								//document.getElementById('directionsDestinationItem').style.display='none';
+								//document.getElementById('directionsOriginItem').style.display='none';
+								//document.getElementById('getDirectionsItem').style.display='none';
+								} else {
+								alert('Sorry, the map was unable to obtain directions.\n\nThe request failed with the message: '+status);
+							}
+						});
+						
+						break;
+					}
+					if(originMarker.getMap() && destinationMarker.getMap() && document.getElementById('getDirectionsItem').style.display===''){
+						//	display the 'Get directions' menu item if it is not visible and both directions origin and destination have been selected
+						document.getElementById('getDirectionsItem').style.display='block';
+						//document.getElementById('addDestinationItem').style.display='block';
+					}
+				});
+				
+				
+				// Create the search box and link it to the UI element.
+				var input = document.getElementById('place-input');
+				var searchBox = new google.maps.places.SearchBox(input);
+				//map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+				
+				// Bias the SearchBox results towards current map's viewport.
+				map.addListener('bounds_changed', function() {
+					searchBox.setBounds(map.getBounds());
+				});
+				
+				var markers = [];
+				// [START region_getplaces]
+				// Listen for the event fired when the user selects a prediction and retrieve
+				// more details for that place.
+				
+				searchBox.addListener('places_changed', function(){
+					var places = searchBox.getPlaces();
+					
+					if (places.length == 0) {
+						return;
+					}
+					
+					// Clear out the old markers.
+					markers.forEach(function(marker) {
+						marker.setMap(null);
+					});
+					markers = [];
+					
+					// For each place, get the icon, name and location.
+					var bounds = new google.maps.LatLngBounds();
+					places.forEach(function(place) {
+						var icon = {
+							url: place.icon,
+							size: new google.maps.Size(71, 71),
+							origin: new google.maps.Point(0, 0),
+							anchor: new google.maps.Point(17, 34),
+							scaledSize: new google.maps.Size(38, 38)
+						};
+						
+						// Create a marker for each place.
+						markers.push(new google.maps.Marker({
+							map: map,
+							icon: icon,
+							title: place.name,
+							position: place.geometry.location,
+							animation: google.maps.Animation.DROP,
+						}));
+						
+						if (place.geometry.viewport) {
+							// Only geocodes have viewport.
+							bounds.union(place.geometry.viewport);
+							map.fitBounds(bounds);
+							} else {
+							
+							if(places.length == 1){
+								map.setCenter(place.geometry.location);
+								map.setZoom(14);
+							}
+							else{
+								bounds.extend(place.geometry.location);
+								map.fitBounds(bounds);
+							}
+							
+						}
+					});
+					//map.fitBounds(bounds);
+				});
+				
+				
+				
+				
+				
+				
+				
+				
+				// Event propagation
+				
+				
+				// Event propagation
+				$(document.body).on('click', 'div.lightbox-wrapper img.expanded', function (e) {
+					var el = e.target,
+					$el = $(el);
+					
+					$el.parents('div.lightbox-wrapper').addClass('animated fadeOut');
+					
+					window.setTimeout(function () {
+						if ($el.data().lat !== 'undefined' && $el.data().lng !== 'undefined') {
+							map.panTo({
+								lat: $el.data().lat,
+								lng: $el.data().lng
+							});
+							
+							map.setZoom(17);
+						}
+						
+						$el.parents('div.lightbox-wrapper').remove();
+					}, 500);
+				});
+				
+				
+				// $(window).on('load', function () {
+				var Restaurant = {
+					init: function () {
+						this.UI.init();
+						this.Data.init();
+						
+						this.UI.super = this;
+						this.Data.super = this;
+					},
+					
+					UI: {
+						config: {
+							icon: './test/restaurant-512.png',
+							size: new google.maps.Size(20, 20)
+						},
+						
+						init: function () {
+							this.setLayerStyle();
+							this.initElements();
+							this.bindEvents();
+						},
+						
+						setLayerStyle: function () {
+							var self = this;
+							
+							map.data.setStyle({
+								icon: {
+									url: self.config.icon,
+									scaledSize: self.config.size
+								}
+							});
+						},
+						
+						initElements: function () {
+							this.$el = $('li#container-restaurant');
+							this.control = this.$el.find('input[name="restaurant"]');
+						},
+						
+						bindEvents: function () {
+							var self = this;
+							
+							this.control.on('change', function (e) {
+								var $control = $(e.target);
+								
+								if ($control.prop('checked')) {
+									self.super.Data.read().done(function (data) {
+										data.forEach(function (restaurant) {
+											map.data.add(self.latLng2Feature(restaurant.latitude, restaurant.longitude));
+										});
+									});
+									} else {
+									map.data.forEach(function (feature) {
+										map.data.remove(feature);
+									});
+								}
+							});
+						},
+						
+						latLng2Feature: function (lat, lng) {
+							return new google.maps.Data.Feature({
+								geometry: new google.maps.Data.Point({lat: lat, lng: lng})
+							});
+						}
+					},
+					
+					Data: {
+						config: {
+							url: {
+								base: 'http://api.v3.factual.com/t/restaurants-us',
+								filter: 'geo',
+								limit: 50
+							},
+							center: [40.7590562,-74.0042502],
+							distance: 20000,
+							
+							param: {
+								$circle: {
+									$center: [0, 0],
+									$meters: 0
+								},
+							},
+							
+							key: '1m5fCeA3V0lhyzZW8pFZ7zMQI7agZ3iZHLce35jQ'
+						},
+						
+						init: function () {
+							this.setParams();
+						},
+						
+						setParams: function () {
+							this.config.param.$circle.$center = this.config.center;
+							this.config.param.$circle.$meters = this.config.distance;
+						},
+						
+						read: function () {
+							return this.request(this.getQuery('read'));
+						},
+						
+						request: function (url) {
+							var dfd = new $.Deferred();
+							
+							$.ajax({
+								method: "GET",
+								url: url,
+								dataType: 'json'
+							})
+							.done(function (data) {
+								dfd.resolve(data.response.data);
+							})
+							.fail(function (err) {
+								dfd.reject(err);
+							});
+							
+							return dfd.promise();
+						},
+						
+						getQuery: function (operation) {
+							switch (operation) {
+								case 'read':
+								return (this.config.url.base + '?' +
+								'KEY=' + this.config.key +
+								'&' + this.config.url.filter + '=' +
+								JSON.stringify(this.config.param) +
+								'&' + 'limit=' + this.config.url.limit.toString()
+								);
+							}
+						}
+					}
+				};
+				
+				Restaurant.init();
+				// });
+			}
+			
+			function toggleLayer(this_layer) {
+				
+				if( this_layer.getMap() ){
+					this_layer.setMap(null);
+					}else{
+					this_layer.setMap(map);
+				}
+			}
+			
+		</script>
+		<script>
+			//Show or hide Route-panel
+			var record1 = 0;
+			var record2 = 0;
+			var div;
+			$(document).ready(function(){
+				$("#route-panel").hide();
+				//$("#transitoption").hide();
+				//$("#caroption").hide();
+				$("#fade-click").click(function(){
+					
+					div = $("#route-panel");
+					if(record1%2==0){
+						$("#route-panel").show();
+						div.animate({height: '+=400px'}, "slow");
+						div.animate({width: '+=400px'}, "slow");
+						record1++;
+					}
+					else{
+						div.animate({width: '-=400px'}, "slow");
+						div.animate({height: '-=400px'}, "slow");
+						record1++;
+						$("#route-panel").hide("slow");
+					}
+				});
+			});
+			
+			$(document).ready(function(){
+				$("#addwaypoints").click(function(){
+					if(record2%2==0){
+						$("#waypoints-panel").slideDown(1000);
+						record2++;
+					}
+					else{
+						$("#waypoints-panel").slideUp(1000);
+						record2++;
+					}
+					
+				});
+			});
+		</script>
+	</head>
+	
+	
+	<body onload="initMap()">
+		<!--I don't know why for lightbox effect will need this part, it seems cannot find div tag without it -->
+		<div id="column-wrapper">
+		</div>
+		
+		
+		<!--Sidemenu Function part -->
+		<header>
+			
+			<button id="slidx_button"></button>
+			<div id="slidx_menu">
+				<!--Geocoding function part -->
+				<div id="geocoding-panel">
+					<input id="place-input" class="controls" type="text" placeholder="Search place">
+				</div>
+				
+				
+				<!--Directional service function part -->
+				<div id="direction-panel">
+					<input id="origin-input" class="controls" type="textbox"
+					placeholder="Enter your location">
+					
+					<input id="destination-input" class="controls" type="textbox"
+					placeholder="Enter a destination location">
+					
+					<div id="mode-selector" class="controls" >
+						<input type="radio" name="type" id="changemode-walking" checked="checked">
+						<label for="changemode-walking" >Foot</label>
+						
+						<input type="radio" name="type" id="changemode-transit" >
+						<label for="changemode-transit" >Transit</label>
+						
+						<input type="radio" name="type" id="changemode-driving">
+						<label for="changemode-driving">Car</label>
+						
+						<input type="radio" name="type" id="changemode-bicycling" >
+						<label for="changemode-bicycling" >Bicycle</label>
+						<img src = "https://cdn3.iconfinder.com/data/icons/public-transport/22/icon_14-48.png" height="48" width="48" style="position: relative; top: 12px; right : 30px">
+						<img src = "https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_directions_transit_48px-48.png" height="48" width="48" style="position: relative; top: 14px; right : 10px">
+						<img src = "http://icons.iconarchive.com/icons/icons8/android/48/Transport-Car-icon.png" height="48" width="48" style="position: relative; top: 7px; left : 10px">
+						<img src = "https://cdn3.iconfinder.com/data/icons/eldorado-stroke-transport/40/bicycle-48.png" height="48" width="48" style="position: relative; top: 17px; left : 30px">
+						
+					</div>
+					<input id="fade-click" type="button" value="Go!">
+					<input id="clearroute" type="button" value="Reset">
+					<input id="addwaypoints" type="button" value="+">
+					<div id="transitoption">
+						<div id="option-selector1">
+							<input type="radio" name="option-transit" id="option-subway">
+							<label for="option-subway" >Love Subway</label>
+							
+							<input type="radio" name="option-transit" id="option-bus" checked="checked">
+							<label for="option-bus" >Love Bus</label>
+						</div>
+					</div>
+					<div id="caroption">
+						<div id="option-selector2">
+							<input type="radio" name="option-car" id="option-money">
+							<label for="option-money" >Money priority</label>
+							
+							<input type="radio" name="option-car" id="option-time" checked="checked">
+							<label for="option-time" >Time priority</label>
+						</div>
+					</div>
+					<div id="waypoints-panel">
+						<input id="intermediate-input" class="controls" type="text"
+						placeholder="Enter a intermediate location">
+					</div>
+					
+				</div>
+				
+				<div id='footer'>
+					<img src="test/footer.jpg" style="width: 260px; height:260px;">
+				</div>
+				
+			</div>
+			
+			<!-- Touch-enabled-Sliding part-->
+			<div class="main-nav-menu">
+				
+				<div class="container">
+					
+					<ul class="main-nav-list">
+						
+						<li data-nav-item="red">
+							<a href="#" class="main-nav-link">
+								<span>New York City</span>
+							</a>
+						</li>
+						<li data-nav-item="orange">
+							<a href="#" class="main-nav-link">
+								<div><span>University</span><input name="layers" type="checkbox" value="layer" onClick="toggleLayer(layer2);">
+								</div>
+							</a>
+						</li>
+						<li data-nav-item="yellow">
+							<a href="#" class="main-nav-link">
+								<div><span>Museum</span><input name="layers" type="checkbox" value="layer" onClick="toggleLayer(layer1);">
+								</div>
+							</a>
+						</li>
+						<li data-nav-item="green">
+							<a href="#" class="main-nav-link">
+								<div><span>Park</span><input name="layers" type="checkbox" value="layer" onClick="toggleLayer(layer3);">
+								</div>
+							</a>
+						</li>
+						<li data-nav-item="blue">
+							<a href="#" class="main-nav-link">
+								<div><span>Theatre</span><input name="layers" type="checkbox" value="layer" onClick="toggleLayer(layer);">
+								</div>
+							</a>
+						</li>
+						<li data-nav-item="restaurant" id='container-restaurant'>
+							<a href="#" class="main-nav-link">
+								<label for='restaurant'>Restaurant</label>
+								<input type='checkbox' name='restaurant'>
+							</a>
+						</li>
+					
+					</ul>
+				</div>
+			</div>
+			<ul class="main-nav-drop">
+				<li class="drop-menu" data-nav-item="red" style = "overflow: auto">
+				<div class="container">
+					<div id="preview-coverflow">
+					<img class="cover" src="demo/NYC1.jpg"/>
+					<img class="cover" src="demo/NYC2.jpg"/>
+					<img class="cover" src="demo/NYC3.jpg"/>
+					<img class="cover" src="demo/NYC4.jpg"/>
+					<img class="cover" src="demo/NYC5.jpg"/>
+					<img class="cover" src="demo/NYC6.jpg"/>
+					<img class="cover" src="demo/NYC7.jpg"/>
+					<img class="cover" src="demo/NYC8.jpg"/>
+					<img class="cover" src="demo/NYC9.jpg"/>
+					<img class="cover" src="demo/NYC10.jpg"/>
+					<img class="cover" src="demo/NYC11.jpg"/>
+					<img class="cover" src="demo/NYC12.jpg"/>
+					<img class="cover" src="demo/NYC13.jpg"/>
+				</div>
+				<style>
+					<!--#preview {
+						padding-bottom: 0px;
+					}-->
+					#preview-coverflow{
+					position: absolute;
+					width: 90%;
+					display: inline-block;
+					left: 2.5%;
+					}
+					#preview-coverflow .cover {
+					cursor:		pointer;
+					width:		350px;
+					height:		210px;
+					position: absolute;
+					top: 80px;
+					box-shadow:	0 0 4em 1em white;
+					}
+				</style>
+				<script>
+					$(function() {
+						if ($.fn.reflect) {
+							$('#preview-coverflow .cover').reflect();	// only possible in very specific situations
+						}
+						
+						$('#preview-coverflow').coverflow({
+							index:			6,
+							density:		2,
+							innerOffset:	50,
+							innerScale:		.7,
+							animateStep:	function(event, cover, offset, isVisible, isMiddle, sin, cos) {
+								if (isVisible) {
+									if (isMiddle) {
+										$(cover).css({
+											'filter':			'none',
+											'-webkit-filter':	'none'
+										});
+										} else {
+										var brightness	= 1 + Math.abs(sin),
+										contrast	= 1 - Math.abs(sin),
+										filter		= 'contrast('+contrast+') brightness('+brightness+')';
+										$(cover).css({
+											'filter':			filter,
+											'-webkit-filter':	filter
+										});
+									}
+								}
+							}
+						});
+					});
+				</script>
+				</div>
+			</li>
+			<li class="drop-menu" data-nav-item="orange">
+				<div class="container">
+					<img class="thumb lightbox-photo" data-caption="Columbia University" src="test/columbia.jpg" style="position: absolute; left: 50px; top: 100px; width: 300px; height:168px;"data-lat="40.807406" data-lng="-73.962594"/>
+					<img class="thumb lightbox-photo" data-caption="NYU" src="test/NYU Campus.jpg" style="position: absolute; left: 400px; top: 100px; width: 300px; height:168px;"data-lat="40.729204" data-lng="-73.996611"/>
+					<img class="thumb lightbox-photo" data-caption="New School" src="test/newschool.jpg" style="position: absolute; left: 750px; top: 100px; width: 300px; height:168px;"/>
+					<img class="thumb lightbox-photo" data-caption="Nys College Of Optometry" src="test/Nys College Of Optometry.jpg" style="position: absolute; left: 1100px; top: 100px; width: 300px; height:168px;"/>
+					<img class="thumb lightbox-photo" data-caption="Pace University" src="test/Pace_University_NYC_5.jpg" style="position: absolute; left: 1450px; top: 100px; width: 300px; height:168px;"/>
+					<img class="thumb lightbox-photo" data-caption="Touro College" src="test/Touro College.jpg" style="position: absolute; left: 1800px; top: 100px; width: 300px; height:168px;"/>
+					
+				</div>
+			</li>
+			<li class="drop-menu" data-nav-item="yellow">
+				<div class="container">
+					<<img class="thumb lightbox-photo" data-caption="American Museum of Natural History" src="test/American_Museum_of_Natural_History.jpg" style="position: absolute; left: 50px; top: 100px; width: 300px; height:168px;"data-lat="40.781259" data-lng="-73.973827"/>
+					<img class="thumb lightbox-photo" data-caption="The Museum of Modern Art" src="test/MOMA.jpg" style="position: absolute; left: 400px; top: 100px; width: 300px; height:168px;"data-lat="40.761217" data-lng="-73.977772"/>
+					<img class="thumb lightbox-photo" data-caption="Metropolitan Museum Art" src="test/metropolitan-museum-art.jpg" style="position: absolute; left: 750px; top: 100px; width: 300px; height:168px;"/>
+					<img class="thumb lightbox-photo" data-caption="Museum of Chinese in America" src="test/Museum of Chinese in America.jpg" style="position: absolute; left: 1100px; top: 100px; width: 300px; height:168px;"/>
+					<img class="thumb lightbox-photo" data-caption="Rubin Museum of Art" src="test/Rubin Museum of Art.jpg" style="position: absolute; left: 1450px; top: 100px; width: 300px; height:168px;"/>
+					<img class="thumb lightbox-photo" data-caption="Children's Museum of Manhattan" src="test/Children's Museum of Manhattan.jpg" style="position: absolute; left: 1800px; top: 100px; width: 300px; height:168px;"/>
+				</div>
+			</li>
+			<li class="drop-menu" data-nav-item="green">
+				<div class="container">
+					<img class="thumb lightbox-photo" data-caption="Central Park" src="test/central_park.jpeg" style="position: absolute; left: 50px; top: 100px; width: 300px; height:168px;" data-lat="40.7828647" data-lng="-73.9653551"/>
+					<img class="thumb lightbox-photo" data-caption="Washington Square" src="test/washington_square.jpg" style="position: absolute; left: 400px; top: 100px; width: 300px; height:168px;" data-lat="40.730872" data-lng="-73.997516"/>
+					<img class="thumb lightbox-photo" data-caption="Island Park" src="test/island.jpg" style="position: absolute; left: 750px; top: 100px; width: 300px; height:168px;"/>
+					<img class="thumb lightbox-photo" data-caption="Madison Square Park" src="test/Madison Square Park.jpg" style="position: absolute; left: 1100px; top: 100px; width: 300px; height:168px;"/>
+					<img class="thumb lightbox-photo" data-caption="Battery Park" src="test/Battery Park.jpg" style="position: absolute; left: 1450px; top: 100px; width: 300px; height:168px;"/>
+					<img class="thumb lightbox-photo" data-caption="CCity Hall Park" src="test/City Hall Park.JPG" style="position: absolute; left: 1800px; top: 100px; width: 300px; height:168px;"/>
+				</div>
+			</li>
+			<li class="drop-menu" data-nav-item="blue">
+				<div class="container">
+					<img class="thumb lightbox-photo" data-caption="MSG Theater" src="test/Madison square garden.jpg" style="position: absolute; left: 50px; top: 100px; width: 300px; height:168px;" data-lat="40.750466" data-lng="-73.9934632"/>
+					<img class="thumb lightbox-photo" data-caption="Westside Theater" src="test/Westside Theater.jpg" style="position: absolute; left: 400px; top: 100px; width: 300px; height:168px;"data-lat="40.759429" data-lng="-73.992712"/>
+					<img class="thumb lightbox-photo" data-caption="York Theatre" src="test/York Theatre.jpg" style="position: absolute; left: 750px; top: 100px; width: 300px; height:168px;"/>
+					<img class="thumb lightbox-photo" data-caption="Helen Hayes Theater" src="test/Helen Hayes Theater.png" style="position: absolute; left: 1100px; top: 100px; width: 300px; height:168px;"/>
+					<img class="thumb lightbox-photo" data-caption="Battery Park" src="test/SoHo Repertory Theatre.jpg" style="position: absolute; left: 1450px; top: 100px; width: 300px; height:168px;"/>
+					<img class="thumb lightbox-photo" data-caption="CCity Hall Park" src="test/Village Theater.JPG" style="position: absolute; left: 1800px; top: 100px; width: 300px; height:168px;"/>
+					
+				</div>
+			</li>
+			<li class="drop-menu" data-nav-item="restaurant">
+				<div class="container">
+					<img class="thumb lightbox-photo" data-caption="Wamu Theater" src="test/dim-sum-670x446.jpg" style="position: absolute; left: 50px; top: 100px; width: 300px; height:168px;" />
+					<img class="thumb lightbox-photo" data-caption="Westside Theater" src="test/Four-Seasons-Restaurant-New-York.jpg" style="position: absolute; left: 400px; top: 100px; width: 300px; height:168px;"/>
+					<img class="thumb lightbox-photo" data-caption="York Theatre" src="test/1-takashi_650.jpg" style="position: absolute; left: 750px; top: 100px; width: 300px; height:168px;" />
+					<img class="thumb lightbox-photo" data-caption="Helen Hayes Theater" src="test/nyc_rooftop_bars_pod39.jpg" style="position: absolute; left: 1100px; top: 100px; width: 300px; height:168px;"/>
+					<img class="thumb lightbox-photo" data-caption="Battery Park" src="test/sgwaetgwgysgsg.jpg" style="position: absolute; left: 1450px; top: 100px; width: 300px; height:168px;"/>
+					<img class="thumb lightbox-photo" data-caption="CCity Hall Park" src="test/The-Butcher-s-Daughter-Interior_54_990x660.JPG" style="position: absolute; left: 1800px; top: 100px; width: 300px; height:168px;"/>
+				</div>
+			</li>
+			</ul>
+		</header>
+		
+		<!-- Main part I don't know what to do for this part -->
+		<main>
+		</main>
+		
+		<!--The panel for text route-->
+		<div id="route-panel"></div>
+		<div id="webtitle">
+		<h1>Lost In New York City</h1>
+		</div>
+		<!-- Map part -->
+		<div id="map"/>
+		
+		
+		
+		
+	</body>
+</html>																																		
